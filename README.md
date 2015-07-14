@@ -1,4 +1,4 @@
-# 3dcart Shopping Cart Free Theme: Allura-html5
+# 3dcart Free Theme: Allura-html5
 
 http://themes.3dcart.com/Allura-html5_p_182.html
 
