@@ -1939,3 +1939,12 @@ footer .col2, footer .col3 {
 #mailistBox input[type="submit"] { width:100%; margin:10px 0 0 0;}
 section#home .header-specials { font-size:20px;}
 }
+
+.username {
+    color: #f38284;
+    display: inline-block;
+    line-height: 24px;
+    max-width: 100px;
+    height: 18px;
+    overflow: hidden;
+}
