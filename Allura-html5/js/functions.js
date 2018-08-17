@@ -228,50 +228,76 @@ jQuery(window).bind('orientationchange', function (event) {
 
 /* Initiates <select> for Sub-Category & Blog menus at a specified width. */
 if (jQuery(window).width() <= 767) {
+	jQuery('#subcategoriesBlock .sub-categories-format').each(function() {
 
-    jQuery('#subcategoriesBlock .sub-categories-format').each(function () {
-        var list = jQuery(this),
-        select = jQuery(document.createElement('select')).insertBefore(jQuery(this).hide());
+		var list = jQuery(this),
+			select = jQuery(document.createElement('select')).insertBefore(jQuery(this).hide());
 
-        jQuery('ul > li > div.sub-categories > a:first-child', this).each(function () {
-            var target = jQuery(this).attr('target'),
-            option = jQuery(document.createElement('option'))
-             .appendTo(select)
-             .val(this.href)
-             .html(jQuery(this).html())
-             .click(function () {
-             });
-        });
-        list.remove();
-    });
+		jQuery('#subcategoriesBlock select').prepend('<option> --- Select Sub-Category ---</option>');
 
-    jQuery('#blog .blogNav ul, #modManufacturer ul').each(function () {
-        var list = jQuery(this),
-        select = jQuery(document.createElement('select')).insertBefore(jQuery(this).hide());
+		jQuery('ul > li > div.sub-categories > a:first-child', this).each(function() {
 
-        jQuery('>li a', this).each(function () {
-            var target = jQuery(this).attr('target'),
-            option = jQuery(document.createElement('option'))
-             .appendTo(select)
-             .val(this.href)
-             .html(jQuery(this).html())
-             .click(function () {
-             });
-        });
-        list.remove();
-    });
+			var target = jQuery(this).attr('target'),
+				option = jQuery(document.createElement('option'))
+				.appendTo(select)
+				.val(this.href)
+				.html(jQuery('.name', this).html())
+				.click(function() {});
+		});
 
-    jQuery('#blog .blogNav select:eq(0)').prepend('<option> --- Select Category ---</option>');
-    jQuery('#blog .blogNav select:eq(1)').prepend('<option> --- Select Recent Posts ---</option>');
-    jQuery('#blog .blogNav select:eq(2)').prepend('<option> --- Select Archives ---</option>');
+		list.remove();
 
-    jQuery('#subcategoriesBlock select').prepend('<option> --- Select Sub-Category ---</option>');
+	});
 
-    jQuery('#modManufacturer select:eq(0)').prepend('<option> --- Select A Manufacturer ---</option>');
+	jQuery('#blog .blogNav ul').each(function(i) {
 
-    jQuery('#blog .blogNav select, #subcategoriesBlock select, #modManufacturer select').change(function () {
-        window.location.href = jQuery(this).val();
-    });
+		var list = jQuery(this);
+		var	select = jQuery(document.createElement('select')).insertBefore(jQuery(this).hide());
+		var	blogtitle1 = '<option> --- Select Category ---</option>';
+		var	blogtitle2 = '<option> --- Select Recent Posts ---</option>';
+		var	blogtitle3 = '<option> --- Select Archives ---</option>';
+
+		if (i == 0) {
+			jQuery('#blog .blogNav select:eq(0)').prepend(blogtitle1);
+		}
+		if (i == 1) {
+			jQuery('#blog .blogNav select:eq(1)').prepend(blogtitle2);
+		}
+		if (i == 2) {
+			jQuery('#blog .blogNav select:eq(2)').prepend(blogtitle3);
+		}
+
+		jQuery('>li a', this).each(function() {
+			var target = jQuery(this).attr('target'),
+				option = jQuery(document.createElement('option'))
+				.appendTo(select)
+				.val(this.href)
+				.html(jQuery(this).html())
+				.click(function() {});
+		});
+		list.remove();
+	});
+
+	jQuery('#modManufacturer ul').each(function(i) {
+		var list = jQuery(this),
+			select = jQuery(document.createElement('select')).insertBefore(jQuery(this).hide());
+
+		jQuery('#modManufacturer select:eq(0)').prepend('<option> --- Select A Manufacturer ---</option>');
+
+		jQuery('>li a', this).each(function() {
+			var target = jQuery(this).attr('target'),
+				option = jQuery(document.createElement('option'))
+				.appendTo(select)
+				.val(this.href)
+				.html(jQuery(this).html())
+				.click(function() {});
+		});
+		list.remove();
+	});
+
+	jQuery('#blog .blogNav select, #subcategoriesBlock select, #modManufacturer select').change(function() {
+		window.location.href = jQuery(this).val();
+	});
 }
 
 /*!
